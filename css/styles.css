@@ -1,0 +1,10 @@
+/* Custom Style Sheet */
+
+html, body {
+    height: 100%;
+}
+
+body {
+    background: linear-gradient(#00d1bc, #a4e0da);
+    background-attachment: fixed;
+}
