@@ -5,12 +5,24 @@ html, body {
 }
 
 body {
-    background: linear-gradient(#00d1bc, #a4e0da);
+    background: linear-gradient(#000000, #8f8f8f);
     background-attachment: fixed;
 }
 
-.header {
+.mainHeader {
     text-align: center;
     font-size: 40px;
-    color: black;
+    color: white;
 }
+
+.header2 {
+    text-align: center;
+    font-size: 14px;
+    color: white;
+}
+
+#italicized {
+    font-style: italic;
+}
+
+/*use hover style over any of the buttons (done, flag for priority, etc) */
