@@ -8,3 +8,9 @@ body {
     background: linear-gradient(#00d1bc, #a4e0da);
     background-attachment: fixed;
 }
+
+.header {
+    text-align: center;
+    font-size: 40px;
+    color: black;
+}
