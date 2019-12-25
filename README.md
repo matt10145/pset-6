@@ -1,5 +1,17 @@
 # Problem Set 6
 
+**By Matthew Hui**
+
+TODO:
+- Add html structure
+    - input bar 
+    - buttons
+    - background images(?)
+- style the structure with CSS
+- add the javascript to make the site work
+
+
+
 It's time to put your skills to the test. This problem set focuses on programming in JavaScript. More specifically, it focuses on creating a fully functional to-do list application from scratch.
 
 ## Getting Started
