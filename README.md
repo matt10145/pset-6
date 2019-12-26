@@ -3,12 +3,15 @@
 **By Matthew Hui**
 
 TODO:
-- Add html structure
-    - input bar 
-    - buttons
-    - background images(?)
-- style the structure with CSS
-- add the javascript to make the site work
+- <del>input bar<del>
+- buttons
+- clear the input bar after typing
+- make sure the size of the list is adaptable to the input
+- borders of boxes should be round
+- priority and delete:
+    - icons
+    - functions
+- background images(?)
 
 
 
