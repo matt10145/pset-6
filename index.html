@@ -10,22 +10,21 @@
 
         <!-- scripts -->
         <script type="text/javascript" src="js/app.js"></script>
-    </head>
+
+        <!-- fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300|Quicksand&display=swap" rel="stylesheet">     </head>
     <body class="gradient">
-        <header class="mainHeader">YOUR TO-DO LIST</header>
+        <header class="headerMain">WHAT TO DO</header>
         <h2 class="header2"><span id="italicized">Just do it.</span> - Shia LaBeouf</h2>
         <hr>
 
-        <form>
-            <div style="text-align: center">
-                <label for="addTask">Your next task: </label>
-                <input type="text" id="addTask" name="task">
-            </div>
-            <div>
-                <span><button>Add</button></span>
-            </div>
+        <form id="inputForm">
+            <label id="labelForm" for="addedTask">Your next task:  </label>
+            <input class="userInput" type="text" size="75" id="addedTask" name="task" required>
+            <button id="addButton">Add</button>
         </form> 
 
-    </body>
+        <ul id="ul"></ul>        
 
+    </body>
 </html>

@@ -1,28 +1,64 @@
 /* Custom Style Sheet */
 
-html, body {
-    height: 100%;
-}
-
 body {
-    background: linear-gradient(#000000, #8f8f8f);
+    background: linear-gradient(145deg, #000000, #8f8f8f);
     background-attachment: fixed;
 }
 
-.mainHeader {
-    text-align: center;
-    font-size: 40px;
+ul li {
     color: white;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 20px;
+    height: 50px;
+    width: 150px;
+    padding: 20px;
+    border: 1px solid #ffffff;
+    
+}
+
+.headerMain {
+    text-align: center;
+    font-size: 60px;
+    color: white;
+    font-family: 'Quicksand', sans-serif;
 }
 
 .header2 {
     text-align: center;
-    font-size: 14px;
+    font-size: 17px;
     color: white;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.userInput {
+    height: 50px;
+    font-size: 20px;
 }
 
 #italicized {
     font-style: italic;
+}
+
+#inputForm {
+    text-align: center;
+}
+
+#labelForm {
+    font-family: 'Quicksand', sans-serif;
+    color: white;
+    font-size: 20px;
+
+}
+
+#addButton {
+    height: 40px;
+    width: 60px;
+    font-size: 18px;
+    font-family: 'Quicksand', sans-serif;
+}
+
+#ul {
+    text-align: center;
 }
 
 /*use hover style over any of the buttons (done, flag for priority, etc) */
