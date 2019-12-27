@@ -14,8 +14,9 @@ ul li {
     padding: 20px;
     border: 1px solid #ffffff;
     border-radius: 20px;
-    display: inline-block;
+    display: block;
     text-align: left;
+    margin-left: 317px;
 }
 
 ul {
@@ -34,7 +35,7 @@ ul {
     font-size: 17px;
     font-family: 'Open Sans', sans-serif;
     text-align: center;
-    position: fixed;
+    position: relative;
     bottom: 0;
     width: 100%;
 }
@@ -81,6 +82,23 @@ ul {
     font-family: 'Quicksand', sans-serif;
     border-radius: 10px;
     text-align: center;
+}
+
+#priorityTaskBtn {
+    height: 40px;
+    width: 40px;
+}
+
+#completeTaskBtn {
+    height: 40px;
+    width: 40px;
+    float: right;
+}
+
+#removeTaskBtn {
+    height: 40px;
+    width: 40px;
+    float: right;
 }
 
 #ul {
