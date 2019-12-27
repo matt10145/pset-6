@@ -4,13 +4,17 @@
 
 TODO:
 - <del>input bar<del>
-- buttons
-- clear the input bar after typing
-- make sure the size of the list is adaptable to the input
-- borders of boxes should be round
-- priority and delete:
-    - icons
-    - functions
+- <del>date and time<del>
+- <del>clear the input bar after typing<del>
+- make the task boxes big enough
+- <del>borders of boxes should be round<del>
+- store input as objects within an array
+- priority:
+    - icon
+    - function
+- remove task:
+    - icon
+    - function
 - background images(?)
 
 
