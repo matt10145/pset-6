@@ -6,14 +6,17 @@ TODO:
 - <del>input bar<del>
 - <del>date and time<del>
 - <del>clear the input bar after typing<del>
-- make the task boxes big enough
+- <del>make the task boxes big enough<del>
 - <del>borders of boxes should be round<del>
-- store input as objects within an array
+- <del>store input as objects within an array<del>
 - priority:
-    - icon
+    - <del>icon<del>
+    - function
+- complete task:
+    - <del>icon<del>
     - function
 - remove task:
-    - icon
+    - <del>icon<del>
     - function
 - background images(?)
 
