@@ -9,11 +9,17 @@ ul li {
     color: white;
     font-family: 'Quicksand', sans-serif;
     font-size: 20px;
-    height: 50px;
-    width: 150px;
+    height: 35px; /* dependent on font size of tasks */
+    width: 1200px;
     padding: 20px;
     border: 1px solid #ffffff;
-    
+    border-radius: 20px;
+    display: inline-block;
+    text-align: left;
+}
+
+ul {
+    text-align: center;
 }
 
 .headerMain {
@@ -23,16 +29,28 @@ ul li {
     font-family: 'Quicksand', sans-serif;
 }
 
-.header2 {
-    text-align: center;
-    font-size: 17px;
+.footer {
     color: white;
+    font-size: 17px;
     font-family: 'Open Sans', sans-serif;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
 }
 
 .userInput {
     height: 50px;
     font-size: 20px;
+    border-radius: 20px;
+}
+
+#dateTime {
+    color: white;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 20px;
+    position: relative;
+    text-align: center;
 }
 
 #italicized {
@@ -47,7 +65,13 @@ ul li {
     font-family: 'Quicksand', sans-serif;
     color: white;
     font-size: 20px;
+}
 
+#priorityFormBtn {
+    border-radius: 20px;
+    color: black;
+    height: 40px;
+    width: 40px;
 }
 
 #addButton {
@@ -55,10 +79,14 @@ ul li {
     width: 60px;
     font-size: 18px;
     font-family: 'Quicksand', sans-serif;
+    border-radius: 10px;
+    text-align: center;
 }
 
 #ul {
-    text-align: center;
+    list-style: inside;
 }
+
+
 
 /*use hover style over any of the buttons (done, flag for priority, etc) */

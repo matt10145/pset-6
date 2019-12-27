@@ -11,20 +11,29 @@
         <!-- scripts -->
         <script type="text/javascript" src="js/app.js"></script>
 
-        <!-- fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300|Quicksand&display=swap" rel="stylesheet">     </head>
+        <!-- fonts & icons -->
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300|Quicksand&display=swap" rel="stylesheet">
+        <link href="https://use.fontawesome.com/releases/v5.0.7/css/all.css" rel="stylesheet">
+    </head>
     <body class="gradient">
-        <header class="headerMain">WHAT TO DO</header>
-        <h2 class="header2"><span id="italicized">Just do it.</span> - Shia LaBeouf</h2>
-        <hr>
+        <header class="headerMain">WHAT TO DO</header> <p id="dateTime"></p>
+        <hr style="color: white;">
+        <br>
 
         <form id="inputForm">
-            <label id="labelForm" for="addedTask">Your next task:  </label>
+            <label id="labelForm" for="addedTask"></label>
             <input class="userInput" type="text" size="75" id="addedTask" name="task" required>
+            <button id="priorityFormBtn"><i class="far fa-flag"></i></button>
             <button id="addButton">Add</button>
         </form> 
 
-        <ul id="ul"></ul>        
+        <br>
+        <br>
 
+        <ul id="ul"></ul> 
+ 
+        <footer class="footer">
+            <p><span id="italicized">Just do it.</span> - Shia LaBeouf</p>
+        </footer>
     </body>
 </html>
