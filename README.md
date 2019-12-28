@@ -9,18 +9,16 @@ TODO:
 - <del>make the task boxes big enough<del>
 - <del>borders of boxes should be round<del>
 - <del>store input as objects within an array<del>
-- priority:
+- <del>priority:<del>
     - <del>icon<del>
-    - function
-- complete task:
+    - <del>function<del>
+- <del>complete task:<del>
     - <del>icon<del>
-    - function
-- remove task:
+    - <del>function<del>
+- <del>remove task:<del>
     - <del>icon<del>
-    - function
+    - <del>function<del>
 - background images(?)
-
-
 
 It's time to put your skills to the test. This problem set focuses on programming in JavaScript. More specifically, it focuses on creating a fully functional to-do list application from scratch.
 
