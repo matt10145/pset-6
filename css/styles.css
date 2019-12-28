@@ -40,10 +40,15 @@ ul {
     width: 100%;
 }
 
-.userInput {
-    height: 50px;
+#userInput {
+    padding: 15px;
     font-size: 20px;
+    width: 701px;
     border-radius: 20px;
+}
+
+#italicized {
+    font-style: italic;
 }
 
 #dateTime {
@@ -54,19 +59,10 @@ ul {
     text-align: center;
 }
 
-#italicized {
-    font-style: italic;
-}
-
 #inputForm {
     text-align: center;
 }
 
-#labelForm {
-    font-family: 'Quicksand', sans-serif;
-    color: white;
-    font-size: 20px;
-}
 
 #priorityFormBtn {
     border-radius: 20px;

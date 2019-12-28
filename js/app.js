@@ -1,116 +1,201 @@
 window.onload = function() {
     displayDateTime();
     setInterval(displayDateTime, 1000);
-    document.getElementById("addButton").onclick = addTask;
+
+    setListeners();
+
     document.getElementById("priorityFormBtn").onclick = inputPriority;
-    
 }
 
-let tasks = [];
-let trackClick = 0;
-
 /**
- * The bulk of this to-do list program: it first adds the desired task to the list with the
- * proper icons. It then checks whether there is text in the input bar. If there is, it moves
- * to read the priority value, and changes the "icon" color accordingly.
+ * Establishes HTML event listeners that check for button clicks. Manages the "add" button
+ * along with the list element buttons (priority, complete, and remove).
  */
-const addTask = function(event) {
-    event.preventDefault();
-    let task = {};
-    input = document.getElementById("addedTask").value;
-    if (input == "" || input == null) {
-        return;
-    } 
-    else {
-        // intentionally empty
-    }
+const setListeners = function() {
+    let addButton = document.getElementById("addButton");
+    addButton.addEventListener("click", function() {
+        let input = document.getElementById("userInput").value;
+        submitTask(input);
+        finalDisplay();
+    });
 
-    // create variables and icons
-    task.content = input;
-    const list = document.getElementById("ul");
-    let newItem = document.createElement("li");
-    let lineBreak = document.createElement("br");
+    let todoList = document.getElementById("ul");
+    todoList.addEventListener("click", function(event) {
+        let clicked = event.target;
 
-    let flag = document.createElement("button");
-    let icon = document.createElement("i");
-    icon.className = "far fa-flag";
-    flag.prepend(icon);
-    flag.id = "priorityTaskBtn";
-
-    let checkmark = document.createElement("button");
-    let icon1 = document.createElement("i");
-    icon1.className = "far fa-check-square";
-    checkmark.prepend(icon1);
-    checkmark.id = "completeTaskBtn";
-
-    let crossOff = document.createElement("button");
-    let icon2 = document.createElement("i");
-    icon2.className = "fas fa-times";
-    crossOff.prepend(icon2);
-    crossOff.id = "removeTaskBtn";
-
-    if (document.getElementById("priorityFormBtn").style.color == "red") {
-        flag.style.color = "red";
-        newItem.style.borderColor = "red";
-        document.getElementById("priorityFormBtn").style.color = "black";
-        trackClick++;
-        task.priority = "high";
-    }
-    else {
-        flag.style.color = "black";
-        newItem.style.borderColor = "white";
-        task.priority = "low";
-    }
-
-    task.completed = "false";
-    tasks.push(task);
-    newItem.innerHTML = ("     " + task.content); 
-    newItem.prepend(flag);
-    newItem.append(checkmark);
-    newItem.append(crossOff);
-
-    // final display
-    list.append(lineBreak);
-    list.append(newItem);
-    document.getElementById("addedTask").value = "";
-
+        if (clicked.id === "removeTaskBtn") {
+            let index = clicked.value;
+            removeItem(index);
+            finalDisplay();
+        }
+        if (clicked.id === "completeTaskBtn") {
+            let index = clicked.value;
+            toggleCompleteTask(index);
+            finalDisplay();
+        }
+        if (clicked.id === "priorityTaskBtn") {
+            let index = clicked.value;
+            togglePriority(index);
+            finalDisplay();
+        }
+        
+    });
 }
 
 /** 
- * Manages form's priority button's color. Uses a simple counter to check what color
+ * Manages form's priority button. Uses a simple counter to check what color
  * the button should be -- either red or black.
  */
+let trackClick = 0;
 const inputPriority = function(event) {
     event.preventDefault();
     trackClick++
     if (trackClick % 2 != 0) {
         document.getElementById("priorityFormBtn").style.color = "red";
-    }
-    else {
+    } else {
         document.getElementById("priorityFormBtn").style.color = "black";
     }
 }
 
-const completeTask = function() {
+let tasks = [];
 
+/**
+ * Inputs submissions into the task array.
+ */
+const submitTask = function(event) {
+    let task = {}; // create object
+    task.content = event;
+    task.checked = false;
+    if (document.getElementById("priorityFormBtn").style.color == "red") {
+        task.priorityHigh = true;
+        document.getElementById("priorityFormBtn").style.color = "black";
+    } else {
+        task.priorityHigh = false;
+    }
+
+    tasks.push(task);
+    let input = document.getElementById("userInput");
+    input.value = "";
 }
 
-const incompleteTask = function() {
+/**
+ * Completes the overall display of tasks by running through the "create" functions.
+ * Checks for completedness and priority value and updates styles accordingly.
+ */
+const finalDisplay = function() {
+    let list = document.getElementById("ul");
+    list.innerHTML = "";
 
+    tasks.forEach((task, index) => {
+        let listElement = document.createElement("li");
+        let lineBreak = document.createElement("br");
+        if (tasks[index].checked) {
+            listElement.style.color = "#42ed70";
+            listElement.style.borderColor = "#42ed70";
+            listElement.style.textDecoration = "line-through";
+        } else if (tasks[index].priorityHigh) {
+            listElement.style.color = "red";
+            listElement.style.borderColor = "red";
+        } else {
+            // intentionally empty
+        }
+        listElement.innerHTML += ("     " + task.content);
+        listElement.append(createCompletedBtn(index));
+        listElement.append(createRemoveBtn(index));
+        listElement.prepend(createPriorityBtn(index));
+
+        list.append(lineBreak);
+        list.append(listElement);
+    });
 }
 
-const removeTask = function() {
-
+/**
+ * Removes task completely from the list and array and rerenders the list.
+ */
+const removeItem = function(index) {
+    tasks.splice(index, 1);
 }
 
-const highPriority = function() {
-
+/**
+ * Toggles priority state of the task and rerenders the list.
+ */
+const togglePriority = function(index) {
+    tasks[index].priorityHigh = !(tasks[index].priorityHigh);
+    let priority = tasks[index].priorityHigh;
+    let content = tasks[index];
+    if (priority) {
+        tasks.splice(index, 1);
+        tasks.unshift(content);
+    } else {
+        tasks.splice(index, 1);
+        tasks.push(content);
+    }
 }
 
-const lowPriority = function() {
-
+/**
+ * Toggles completeness state of the task.
+ */
+const toggleCompleteTask = function(index) {
+    tasks[index].checked = !(tasks[index].checked);
 }
 
+/**
+ * Creates button that toggles the priority state of an element.
+ */
+const createPriorityBtn = function(index) {
+    let flag = document.createElement("button");
+    let icon = document.createElement("i");
+    icon.className = "far fa-flag";
+    flag.prepend(icon);
+    flag.id = "priorityTaskBtn";
+    flag.value = index;
+
+    if (tasks[index].priority === "high") {
+        flag.style.color = "red";
+    } else {
+        // intentionally empty
+    }
+
+    return flag;
+}
+
+/**
+ * Creates button that checks off an element.
+ */
+const createCompletedBtn = function(index) {
+    let checkmark = document.createElement("button");
+    let icon1 = document.createElement("i");
+    icon1.className = "far fa-check-square";
+    checkmark.prepend(icon1);
+    checkmark.id = "completeTaskBtn";
+    checkmark.value = index;
+
+    if (tasks[index].checked == true) {
+        checkmark.style.color = "green";
+    } else {
+        // intentionally empty
+    }
+
+    return checkmark;    
+}
+
+/**
+ * Creates button that removes an element.
+ */
+const createRemoveBtn = function(index) {
+    let crossOff = document.createElement("button");
+    let icon2 = document.createElement("i");
+    icon2.className = "fas fa-times";
+    crossOff.prepend(icon2);
+    crossOff.id = "removeTaskBtn";
+    crossOff.value = index;
+
+    return crossOff;
+}
+
+/**
+ * Function that runs periodically to display date and time.
+ */
 const displayDateTime = function() {
     var dt = new Date();
     document.getElementById("dateTime").innerHTML = dt.toLocaleString();
