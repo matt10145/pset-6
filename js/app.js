@@ -9,7 +9,8 @@ window.onload = function() {
 
 /**
  * Establishes HTML event listeners that check for button clicks. Manages the "add" button
- * along with the list element buttons (priority, complete, and remove).
+ * along with the list element buttons (priority, complete, and remove). This is much more
+ * efficient than using individual "onlick" events in window.onload().
  */
 const setListeners = function() {
     let addButton = document.getElementById("addButton");
@@ -60,9 +61,11 @@ const inputPriority = function(event) {
 let tasks = [];
 
 /**
- * Inputs submissions into the task array.
+ * Inputs submissions into the task array. First checks whether there is any actual input and moves on accordingly.
  */
 const submitTask = function(event) {
+    if (event == null || event === "") return;
+
     let task = {}; // create object
     task.content = event;
     task.checked = false;
@@ -72,7 +75,6 @@ const submitTask = function(event) {
     } else {
         task.priorityHigh = false;
     }
-
     tasks.push(task);
     let input = document.getElementById("userInput");
     input.value = "";
