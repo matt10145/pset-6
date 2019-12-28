@@ -115,7 +115,10 @@ const finalDisplay = function() {
  * Removes task completely from the list and array and rerenders the list.
  */
 const removeItem = function(index) {
-    tasks.splice(index, 1);
+    let choice = String(prompt("Are your sure you want to remove this task? (Answer with y / n)."));
+    choice = choice.toLowerCase();
+    if (choice === "y") tasks.splice(index, 1);
+        else return;
 }
 
 /**
