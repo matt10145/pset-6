@@ -1,10 +1,9 @@
 window.onload = function() {
     displayDateTime();
     setInterval(displayDateTime, 1000);
+    document.getElementById("priorityFormBtn").onclick = inputPriority;
 
     setListeners();
-
-    document.getElementById("priorityFormBtn").onclick = inputPriority;
 }
 
 /**
@@ -115,7 +114,7 @@ const finalDisplay = function() {
  * Removes task completely from the list and array and rerenders the list.
  */
 const removeItem = function(index) {
-    let choice = String(prompt("Are your sure you want to remove this task? (Answer with y / n)."));
+    let choice = String(prompt("Are you sure you want to remove this task? (Answer with y / n)."));
     choice = choice.toLowerCase();
     if (choice === "y") tasks.splice(index, 1);
         else return;
