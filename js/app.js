@@ -6,17 +6,26 @@ window.onload = function() {
     setListeners();
 }
 
+let tasks = [];
+let trackClick = 0;
+let initialPriority;
+
 /**
  * Establishes HTML event listeners that check for button clicks. Manages the "add" button
- * along with the list element buttons (priority, complete, and remove). This is much more
- * efficient than using individual "onlick" events in window.onload().
+ * along with the list element buttons (priority, complete, and remove). Note that this is a 
+ * much more efficient method than using individual "onlick" events in window.onload().
  */
 const setListeners = function() {
     let addButton = document.getElementById("addButton");
     addButton.addEventListener("click", function() {
         let input = document.getElementById("userInput").value;
         submitTask(input);
-        finalDisplay();
+        if (getInitialPriority() === "high" && input != null && input != "") {
+            togglePriority((tasks.length - 1));
+            finalDisplay();
+        } else {
+            finalDisplay();
+        }
     });
 
     let todoList = document.getElementById("ul");
@@ -46,34 +55,35 @@ const setListeners = function() {
  * Manages form's priority button. Uses a simple counter to check what color
  * the button should be -- either red or black.
  */
-let trackClick = 0;
 const inputPriority = function(event) {
     event.preventDefault();
     trackClick++
     if (trackClick % 2 != 0) {
         document.getElementById("priorityFormBtn").style.color = "red";
+        initialPriority = "high";
     } else {
         document.getElementById("priorityFormBtn").style.color = "black";
+        initialPriority = "low";
     }
 }
 
-let tasks = [];
+/**
+ * Returns the initial priority state.
+ */
+const getInitialPriority = function() {
+    return initialPriority;
+}
 
 /**
  * Inputs submissions into the task array. First checks whether there is any actual input and moves on accordingly.
  */
 const submitTask = function(event) {
-    if (event == null || event === "") return;
+    if (event == null || event === "") return; // one-liner
 
     let task = {}; // create object
     task.content = event;
     task.checked = false;
-    if (document.getElementById("priorityFormBtn").style.color == "red") {
-        task.priorityHigh = true;
-        document.getElementById("priorityFormBtn").style.color = "black";
-    } else {
-        task.priorityHigh = false;
-    }
+    task.priorityHigh = false;
     tasks.push(task);
     let input = document.getElementById("userInput");
     input.value = "";
@@ -94,9 +104,13 @@ const finalDisplay = function() {
             listElement.style.color = "#42ed70";
             listElement.style.borderColor = "#42ed70";
             listElement.style.textDecoration = "line-through";
-        } else if (tasks[index].priorityHigh) {
+        } else {
+
+        }
+        if (tasks[index].priorityHigh) {
             listElement.style.color = "red";
             listElement.style.borderColor = "red";
+            listElement.style.textDecoration = "none";
         } else {
             // intentionally empty
         }
@@ -114,10 +128,7 @@ const finalDisplay = function() {
  * Removes task completely from the list and array and rerenders the list.
  */
 const removeItem = function(index) {
-    let choice = String(prompt("Are you sure you want to remove this task? (Answer with y / n)."));
-    choice = choice.toLowerCase();
-    if (choice === "y") tasks.splice(index, 1);
-        else return;
+    tasks.splice(index, 1);
 }
 
 /**
@@ -127,6 +138,7 @@ const togglePriority = function(index) {
     tasks[index].priorityHigh = !(tasks[index].priorityHigh);
     let priority = tasks[index].priorityHigh;
     let content = tasks[index];
+
     if (priority) {
         tasks.splice(index, 1);
         tasks.unshift(content);
@@ -154,7 +166,7 @@ const createPriorityBtn = function(index) {
     flag.id = "priorityTaskBtn";
     flag.value = index;
 
-    if (tasks[index].priority === "high") {
+    if (tasks[index].priorityHigh) {
         flag.style.color = "red";
     } else {
         // intentionally empty
