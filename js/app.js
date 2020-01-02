@@ -12,7 +12,7 @@ let initialPriority;
 
 /**
  * Establishes HTML event listeners that check for button clicks. Manages the "add" button
- * along with the list element buttons (priority, complete, and remove). Note that this is a 
+ * along with the list element buttons (priority, complete, and remove). Note that this is a
  * much more efficient method than using individual "onlick" events in window.onload().
  */
 const setListeners = function() {
@@ -47,11 +47,11 @@ const setListeners = function() {
             togglePriority(index);
             finalDisplay();
         }
-        
+
     });
 }
 
-/** 
+/**
  * Manages form's priority button. Uses a simple counter to check what color
  * the button should be -- either red or black.
  */
@@ -135,6 +135,7 @@ const removeItem = function(index) {
  * Toggles priority state of the task and rerenders the list.
  */
 const togglePriority = function(index) {
+    console.log("test")
     tasks[index].priorityHigh = !(tasks[index].priorityHigh);
     let priority = tasks[index].priorityHigh;
     let content = tasks[index];
@@ -159,54 +160,60 @@ const toggleCompleteTask = function(index) {
  * Creates button that toggles the priority state of an element.
  */
 const createPriorityBtn = function(index) {
+    let wrapperFlag = document.createElement("div");
     let flag = document.createElement("button");
     let icon = document.createElement("i");
     icon.className = "far fa-flag";
     flag.prepend(icon);
-    flag.id = "priorityTaskBtn";
-    flag.value = index;
+    wrapperFlag.prepend(flag);
+    wrapperFlag.id = "priorityTaskBtn";
+    wrapperFlag.value = index;
 
     if (tasks[index].priorityHigh) {
-        flag.style.color = "red";
+        wrapperFlag.style.color = "red";
     } else {
         // intentionally empty
     }
 
-    return flag;
+    return wrapperFlag;
 }
 
 /**
  * Creates button that checks off an element.
  */
 const createCompletedBtn = function(index) {
+    let wrapperCheck = document.createElement("div");
     let checkmark = document.createElement("button");
     let icon1 = document.createElement("i");
     icon1.className = "far fa-check-square";
     checkmark.prepend(icon1);
-    checkmark.id = "completeTaskBtn";
-    checkmark.value = index;
+    wrapperCheck.prepend(checkmark);
+    wrapperCheck.id = "completeTaskBtn";
+    wrapperCheck.value = index;
 
     if (tasks[index].checked == true) {
-        checkmark.style.color = "green";
+        wrapperCheck.style.color = "green";
     } else {
         // intentionally empty
     }
 
-    return checkmark;    
+    return wrapperCheck;
 }
 
 /**
  * Creates button that removes an element.
  */
 const createRemoveBtn = function(index) {
+    let wrapperRemove = document.createElement("div");
     let crossOff = document.createElement("button");
     let icon2 = document.createElement("i");
     icon2.className = "fas fa-times";
     crossOff.prepend(icon2);
-    crossOff.id = "removeTaskBtn";
-    crossOff.value = index;
+    wrapperRemove.prepend(crossOff);
+    wrapperRemove.id = "removeTaskBtn";
+    wrapperRemove.value = index;
 
-    return crossOff;
+    return wrapperRemove;
 }
 
 /**
