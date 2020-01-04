@@ -11,9 +11,9 @@ let trackClick = 0;
 let initialPriority;
 
 /**
- * Establishes HTML event listeners that check for button clicks. Manages the "add" button
- * along with the list element buttons (priority, complete, and remove). Note that this is a
- * much more efficient method than using individual "onlick" events in window.onload().
+ * Establishes HTML event listeners that check for mouse clicks. Manages both the form buttons 
+ * (form flag and add) and list element buttons (priority, complete, and remove). Note that this is a
+ * much more efficient and manageable method than using individual "onlick" events in window.onload().
  */
 const setListeners = function() {
     let addButton = document.getElementById("addButton");
@@ -105,8 +105,8 @@ const finalDisplay = function() {
             listElement.style.borderColor = "#42ed70";
             listElement.style.textDecoration = "line-through";
         } else {
-
-        }
+            // intentionally empty
+        }        
         if (tasks[index].priorityHigh) {
             listElement.style.color = "red";
             listElement.style.borderColor = "red";
@@ -135,7 +135,6 @@ const removeItem = function(index) {
  * Toggles priority state of the task and rerenders the list.
  */
 const togglePriority = function(index) {
-    console.log("test")
     tasks[index].priorityHigh = !(tasks[index].priorityHigh);
     let priority = tasks[index].priorityHigh;
     let content = tasks[index];
@@ -160,64 +159,52 @@ const toggleCompleteTask = function(index) {
  * Creates button that toggles the priority state of an element.
  */
 const createPriorityBtn = function(index) {
-    let wrapperFlag = document.createElement("div");
-    let flag = document.createElement("button");
-    let icon = document.createElement("i");
-    icon.className = "far fa-flag";
-    flag.prepend(icon);
-    wrapperFlag.prepend(flag);
-    wrapperFlag.id = "priorityTaskBtn";
-    wrapperFlag.value = index;
+    let flag = document.createElement("i");
+    flag.className = "far fa-flag";
+    flag.id = "priorityTaskBtn";
+    flag.value = index;
 
     if (tasks[index].priorityHigh) {
-        wrapperFlag.style.color = "red";
+        flag.style.color = "red";
     } else {
         // intentionally empty
     }
 
-    return wrapperFlag;
+    return flag;
 }
 
 /**
  * Creates button that checks off an element.
  */
 const createCompletedBtn = function(index) {
-    let wrapperCheck = document.createElement("div");
-    let checkmark = document.createElement("button");
-    let icon1 = document.createElement("i");
-    icon1.className = "far fa-check-square";
-    checkmark.prepend(icon1);
-    wrapperCheck.prepend(checkmark);
-    wrapperCheck.id = "completeTaskBtn";
-    wrapperCheck.value = index;
+    let checkmark = document.createElement("i");
+    checkmark.className = "far fa-check-square";
+    checkmark.id = "completeTaskBtn";
+    checkmark.value = index;
 
     if (tasks[index].checked == true) {
-        wrapperCheck.style.color = "green";
+        checkmark.style.color = "#42ed70";
     } else {
         // intentionally empty
     }
 
-    return wrapperCheck;
+    return checkmark;
 }
 
 /**
  * Creates button that removes an element.
  */
 const createRemoveBtn = function(index) {
-    let wrapperRemove = document.createElement("div");
-    let crossOff = document.createElement("button");
-    let icon2 = document.createElement("i");
-    icon2.className = "fas fa-times";
-    crossOff.prepend(icon2);
-    wrapperRemove.prepend(crossOff);
-    wrapperRemove.id = "removeTaskBtn";
-    wrapperRemove.value = index;
+    let crossOff = document.createElement("i");
+    crossOff.className = "fas fa-times";
+    crossOff.id = "removeTaskBtn";
+    crossOff.value = index;
 
-    return wrapperRemove;
+    return crossOff;
 }
 
 /**
- * Function that runs periodically to display date and time.
+ * Function that runs periodically to display the current date and time.
  */
 const displayDateTime = function() {
     var dt = new Date();

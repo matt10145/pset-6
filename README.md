@@ -20,7 +20,8 @@ TODO:
     - <del>function<del>
 - background images(?)
 - <del>@mrwilson How to properly position an element with pre-inputted high priority? (should automatically go to top)<del>
-- there seems to be some latency in accepting a click? (may just be firefox / my laptop)
+
+- final issue (won't bother to resolve, but still want to ask): how can I make the priority and completedness states properly cross over, color-wise (hitting priority and then complete doesn't return an all-green box, etc)
 
 It's time to put your skills to the test. This problem set focuses on programming in JavaScript. More specifically, it focuses on creating a fully functional to-do list application from scratch.
 
